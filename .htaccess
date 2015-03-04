@@ -1,0 +1,42 @@
+#DirectoryIndex index.html
+ErrorDocument 403 "Forbidden"
+RewriteCond %{HTTP_USER_AGENT} "\.ru" [NC]
+RewriteCond %{HTTP_USER_AGENT} ^(.*)\.ru$ [NC]
+RewriteRule .* - [F]
+
+# BEGIN Mod_expire rules
+<filesmatch "\.(flv|gif|ico|jpg|jpeg|png|swf)$">
+    header set Cache-Control "max-age=2592000"
+</filesmatch>
+<filesmatch "\.(css|js|pdf|txt)$">
+    header set Cache-Control "max-age=604800"
+</filesmatch>
+<filesmatch "\.(html|htm)$">
+    header set Cache-Control "max-age=43200"
+</filesmatch>
+<filesmatch "\.(cgi|fcgi|php|pl|scgi|spl)$">
+    header unset Cache-Control
+    <ifmodule mod_expires.c>
+        expiresactive off
+    </ifmodule>
+</filesmatch>
+<ifmodule mod_expires.c>
+    expiresdefault "access plus 1 year"
+</ifmodule>
+# END Mod_expire rules
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+
+Rewritecond %{http_host} ^yerkirmedia.am [nc]
+Rewriterule ^(.*)$ http://www.yerkirmedia.am/$1 [r=301,nc] 
+
+</IfModule>
+
+# END WordPress
