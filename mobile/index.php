@@ -477,12 +477,13 @@ $(document).ready(function() {
 					<div class="wrapper">
 
 						<ul>';?>
-						<li>
+                        
+					<!--<li>
     		<div style="position:relative;width:200px;">
        		<img src="../eluyt.jpg" style="width:190px;height:152px;" alt=""/>
     		<div class="liVideoDescDiv"><a rel='external' class="liVideoA" href="https://www.youtube.com/watch?v=BHwb_aGfEs8&list=PLffuHBHoz5dp8TEZG6p0rQ_yoD7ViggSP&index=1" >Արցախյան ուխտագնացություն</a></div>
     		</div>
-   		 </li>
+   		 </li>-->
 
 					<?		$resh = mysql_query("SELECT `id`, `r_pic`, `r_title_".$lan."` FROM `records` WHERE `r_category` > 0 AND `r_video_".$lan."`!='' AND `r_show_$lan` = 1 AND `id` NOT IN (1,2) Order by `r_ord` desc LIMIT 18 ");
 
