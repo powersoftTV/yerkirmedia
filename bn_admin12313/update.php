@@ -118,6 +118,8 @@ if ($userfile_error > 0)
     }
     exit;
   }
+  $userfile_name=trim($userfile_name);
+  $userfile_name=str_replace(" ","_",$userfile_name);
   $as=$userfile_name;
   $as = explode('.', $as);
   $c= count($as);
@@ -209,6 +211,8 @@ elseif($act=="ether"){
 			}
 			exit;
 		  }
+          $userfile_name=trim($userfile_name);
+          $userfile_name=str_replace(" ","_",$userfile_name);
 		  $as=$userfile_name;
 		  $as = explode('.', $as);
 		  $c= count($as);
@@ -265,6 +269,8 @@ elseif($act=="ether"){
 			}
 			exit;
 		  }
+          $userfile_name=trim($userfile_name);
+          $userfile_name=str_replace(" ","_",$userfile_name);
 		  $as=$userfile_name;
 		  $as = explode('.', $as);
 		  $c= count($as);
@@ -339,6 +345,8 @@ if ($userfile_error > 0)
     }
     exit;
   }
+  $userfile_name=trim($userfile_name);
+  $userfile_name=str_replace(" ","_",$userfile_name);
   $as=$userfile_name;
   $as = explode('.', $as);
   $c= count($as);
@@ -427,6 +435,8 @@ if ($userfile_error > 0)
     }
     exit;
   }
+  $userfile_name=trim($userfile_name);
+  $userfile_name=str_replace(" ","_",$userfile_name);
   $as=$userfile_name;
   $as = explode('.', $as);
   $c= count($as);
@@ -519,6 +529,8 @@ if ($userfile_error > 0)
     }
     exit;
   }
+  $userfile_name=trim($userfile_name);
+  $userfile_name=str_replace(" ","_",$userfile_name);
   $as=$userfile_name;
   $as = explode('.', $as);
   $c= count($as);
@@ -595,6 +607,8 @@ if ($userfile_error > 0)
     }
     exit;
   }
+  $userfile_name=trim($userfile_name);
+  $userfile_name=str_replace(" ","_",$userfile_name);
   $as=$userfile_name;
   $as = explode('.', $as);
   $c= count($as);
@@ -678,6 +692,8 @@ if ($userfile_error > 0)
     }
     exit;
   }
+  $userfile_name=trim($userfile_name);
+  $userfile_name=str_replace(" ","_",$userfile_name);
   $as=$userfile_name;
   $as = explode('.', $as);
   $c= count($as);

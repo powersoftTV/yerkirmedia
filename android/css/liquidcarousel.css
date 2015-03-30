@@ -1,0 +1,49 @@
+.liquid {
+	/*background:#313b31 url('../images/bodybackground.png') repeat-y scroll 50% 0;
+	border:2px solid #19301C;
+	-moz-border-radius:10px 10px 10px 10px;
+	-webkit-border-radius:10px 10px 10px 10px;
+	border-radius:10px 10px 10px 10px;*/
+	padding:10px 0;
+}
+.liquid .previous {
+	display:block;
+	height:150px;
+	width:19px;
+	background:url('/s/i/video_prev.png') no-repeat 0px 50%;
+	float:left;
+	margin:0 10px;
+	padding:0;
+	cursor:pointer;
+}
+.liquid .previous:hover{
+	background:url('/s/i/video_prev.png') no-repeat -19px 50%;
+}
+
+.liquid .next {
+	display:block;
+	height:150px;
+	width:19px;
+	background:url('/s/i/video_next.png') no-repeat 0px 50%;
+	float:right;
+	margin:0 10px;
+	padding:0;
+	cursor:pointer;
+}
+.liquid .next:hover{
+	background:url('/s/i/video_next.png') no-repeat -19px 50%;
+}
+
+
+.liquid ul li {
+	width:200px;
+	padding:0 2px;
+	margin:0;
+}
+.liquid ul li a img {
+	/*
+	-moz-box-shadow: 5px 5px 3px #222;
+   	-webkit-box-shadow: 5px 5px 3px #222;
+   	box-shadow: 5px 5px 3px #222;
+	*/
+}

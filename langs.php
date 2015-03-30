@@ -1,4 +1,5 @@
 <?PHP
+
 $_LANG[0]["hy"]="Արբանյակային եթեր";
 $_LANG[0]["en"]="Satellite TV";
 $_LANG[0]["ru"]="Спутниковый эфир";
@@ -11,19 +12,10 @@ $_LANG[2]["hy"]="Հաղորդումներ";
 $_LANG[2]["ru"]="Передачи";
 $_LANG[2]["en"]="Programs";
 
-if($lan=="hy") {
-	$programslist['0']="Քաղաքական";
-	$programslist['1']="Հասարակական";
-	$programslist['2']="Ճանաչողական";
-	$programslist['3']="Ժամանցային";
-	$programslist['4']="Մշակութային";
-	$programslist['5']="Մարզական";
-	$programslist['6']="Անկեղծ ասած...";
-
-	$yerkir_media = "Երկիր Մեդիա";
-	$r_keywords_r .= " նորություններ, հեռուստաընկերություն, երկիր, նորություն, հաղորդումներ այսօր, թարմ, վերջին, Հայաստան, լուրեր, ";
-
-} elseif($lan=="en") {
+$_LANG[23]["hy"]="Թոփ լուրեր";
+$_LANG[23]["ru"]="Главные новости";
+$_LANG[23]["en"]="Top news";
+ if($lan=="en") {
 	$programslist['0']="Political";
 	$programslist['1']="Social";
 	$programslist['2']="Informative";
@@ -33,6 +25,7 @@ if($lan=="hy") {
 	$programslist['6']="Frankly speaking";
 
 	$yerkir_media = "Yerkir Media";
+	$main="Main";
 	$r_keywords_r .= " news, tv, world, Armenia, programs, latest, Yerkir Media";
 
 } elseif($lan=="ru") {
@@ -45,7 +38,22 @@ if($lan=="hy") {
 	$programslist['6']="Откровенно говоря";
 
 	$yerkir_media = "Еркир Медиа";
+	$main="Основной";
 	$r_keywords_r .= " новости, ТВ, tv, телевидение, мир, Армения, программы, передачи, Еркир Медиа";
+}else{
+    $programslist['0']="Քաղաքական";
+	$programslist['1']="Հասարակական";
+	$programslist['2']="Ճանաչողական";
+	$programslist['3']="Ժամանցային";
+	$programslist['4']="Մշակութային";
+	$programslist['5']="Մարզական";
+	$programslist['6']="Անկեղծ ասած...";
+
+	$yerkir_media = "Երկիր Մեդիա";
+	$main="Գլխավոր";
+	
+	
+	$r_keywords_r .= " նորություններ, հեռուստաընկերություն, երկիր, նորություն, հաղորդումներ այսօր, թարմ, վերջին, Հայաստան, լուրեր, ";
 }
 
 
@@ -128,4 +136,7 @@ $_LANG[21]["ru"]="Ничего не найдено";
 $_LANG[22]["hy"]="Ըստ ամսաթվի";
 $_LANG[22]["en"]="By date";
 $_LANG[22]["ru"]="По дате";
+
+
+
 ?>
