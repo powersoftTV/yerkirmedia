@@ -15,6 +15,11 @@ $_LANG[2]["en"]="Programs";
 $_LANG[23]["hy"]="Թոփ լուրեր";
 $_LANG[23]["ru"]="Главные новости";
 $_LANG[23]["en"]="Top news";
+
+$_LANG[24]["hy"]="Տեսանյութեր";
+$_LANG[24]["ru"]="Видео";
+$_LANG[24]["en"]="Video";
+
  if($lan=="en") {
 	$programslist['0']="Political";
 	$programslist['1']="Social";
@@ -25,7 +30,7 @@ $_LANG[23]["en"]="Top news";
 	$programslist['6']="Frankly speaking";
 
 	$yerkir_media = "Yerkir Media";
-	$main="Main";
+	$main="Top";
 	$r_keywords_r .= " news, tv, world, Armenia, programs, latest, Yerkir Media";
 
 } elseif($lan=="ru") {
@@ -38,7 +43,7 @@ $_LANG[23]["en"]="Top news";
 	$programslist['6']="Откровенно говоря";
 
 	$yerkir_media = "Еркир Медиа";
-	$main="Основной";
+	$main="Главное";
 	$r_keywords_r .= " новости, ТВ, tv, телевидение, мир, Армения, программы, передачи, Еркир Медиа";
 }else{
     $programslist['0']="Քաղաքական";

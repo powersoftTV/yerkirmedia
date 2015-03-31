@@ -11,7 +11,7 @@ $page = isset($_GET['page'])?$page=$_GET['page']:"";
 if(isset($_GET['id'])) $id=intval($_GET['id']);
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" xml:lang="$lan" lang="$lan">
 <head> 
 <title><?=$yerkir_media?></title> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -104,7 +104,6 @@ $(document).ready(function() {
 		text-indent:20px;
 		margin:0;
 		padding:0;
-        float: left;
 	}
 	#topVideosDiv {	margin-top:20px;}
 	#topNewsDiv .topNewsDiv{
@@ -189,7 +188,7 @@ $(document).ready(function() {
 	</div>
     <?
     if($page=="") { ?>
-        <span  style="float:right; padding-right:7px; padding-top: 2px;">
+        <span  style="float:right; padding-right:7px;">
 			<span class='lang' style='float:left;  padding:0 8px 0 8px; background:none' >
 			    <a rel='external' href="?lan=hy" <? if($lan=="hy") echo" class='activeAFooter'"; ?>>Հայ</a>
             </span>
@@ -211,7 +210,7 @@ $(document).ready(function() {
 		  $r_date = mysql_result($resh, $i, "r_date");
 		  echo'<div class="topNewsDiv">
                 <div class="topNewsImage">
-                    <img src="../userfiles/'.$r_pic.'" alt="" />
+                    <img src="../userfiles/'.$r_pic.'"/>
                 </div>
                 <div class="topNewsContent">
                     <h2 class="k_text"><a rel="external" href="?lan='.$lan.'&amp;page=news&amp;id='.$r_id.'">'.$r_title.'</a></h2>
@@ -224,18 +223,18 @@ $(document).ready(function() {
 	   echo'<div class="more" onclick="toggleTopNews()"></div>';
        echo"</div>";
        echo'<div id="topVideosDiv">
-    			<div class="titleDiv"><h2>'.$_LANG[24][$lan].' <img src="/s/i/video_f.png" style="margin-left:10px;" alt="" /></h2></div>
+    			<div class="titleDiv"><h2>'.$_LANG[24]["$lan"].' <img src="/s/i/video_f.png" style="margin-left:10px;" alt=""></h2></div>
 				<div id="liquid1" class="liquid" >
 					<span class="previous"></span>
 					<div class="wrapper">
-						<ul>';if($lan=="hy"){?>
+						<ul>';?>
                             <li>
     		                  <div style="position:relative;width:200px;">
        		                      <img src="../eluyt.jpg" style="width:190px;height:152px;" alt=""/>
     		                      <div class="liVideoDescDiv"><a rel='external' class="liVideoA" href="https://www.youtube.com/watch?v=BHwb_aGfEs8&list=PLffuHBHoz5dp8TEZG6p0rQ_yoD7ViggSP&index=1" >Արցախյան ուխտագնացություն</a></div>
     		                  </div>
    		                   </li>
-                           <? }
+                           <?
                            $resh = mysql_query("SELECT `id`, `r_pic`, `r_title_".$lan."` FROM `records` WHERE `r_category` > 0 AND `r_video_".$lan."`!='' AND `r_show_$lan` = 1 AND `id` NOT IN (1,2) Order by `r_ord` desc LIMIT 18 ");
 		                   $count = @mysql_num_rows($resh);
     					   for($i=0;$i<$count;$i++){
@@ -255,8 +254,8 @@ $(document).ready(function() {
 			</div>
 		</div>';
  }
- if($page=="news" && !$id) {?>
-    <span  style="float:right; padding-right:7px;  padding-top: 2px;">
+ elseif($page=="news" && !$id) {?>
+    <span  style="float:right; padding-right:7px;">
         <span class='lang' style='float:left;  padding:0 8px 0 8px; background:none' >
 		    <a rel='external' href="?page=<?=$page?>&amp;lan=hy" <? if($lan=="hy") echo" class='activeAFooter'"; ?>>Հայ</a>
         </span>
@@ -268,7 +267,7 @@ $(document).ready(function() {
         </span>
     </span>
     <?
-    echo'<div class="titleDiv"><h2>'.$_LANG[10][$lan].'</h2></div>';
+    echo'<div class="titleDiv"><h2>'.$_LANG[10]["$lan"].'</h2></div>';
 	echo'<ul data-role="listview" data-inset="false" data-filter="false" id="newsUL" data-theme="c">';
     $resh = mysql_query("SELECT * FROM `records` WHERE `r_category` > 0 AND `r_show_$lan` > 0 Order by `r_ord` desc LIMIT 50");
 	$count = @mysql_num_rows($resh);
@@ -290,7 +289,7 @@ $(document).ready(function() {
     }
     echo'</ul>';
  } 
- if($page=="news" && $id) {
+ elseif($page=="news" && $id) {
 	$resh = mysql_query("SELECT * FROM `records` WHERE `id` = '".$id."' AND `r_category` > 0 AND `r_show_$lan` = 1 ");
 	$row = mysql_fetch_array($resh);
     $r_id_r = $row['id'];
@@ -300,14 +299,14 @@ $(document).ready(function() {
     $r_text_r = $row['r_text_'.$lan.''];
     $r_video_r = $row['r_video_'.$lan.''];
     preg_match('/src="([^"]+)"/', $r_video_r, $match);
-	if($match[1]!="")$r_video_r = "<a rel='external' href='".$match[1]."'><img src='images/youtube-play-70x70.png' alt='' /></a>";
+	if($match[1]!="")$r_video_r = "<a rel='external' href='".$match[1]."'><img src='images/youtube-play-70x70.png'></a>";
     $r_keywords_r = $row['r_keywords_'.$lan.''];
     
     $title_hy = $row['r_title_hy'];
     $title_ru = $row['r_title_ru'];
     $title_en = $row['r_title_en'];
     ?>
-    <span  style="float:right; padding-right:7px; padding-top: 2px;">
+    <span  style="float:right; padding-right:7px;">
         <? if($title_hy !=""){?>
         <span class='lang' style='float:left;  padding:0 8px 0 8px; background:none' >
 		    <a rel='external' href="?page=<?=$page?>&amp;lan=hy&amp;id=<?=$id?>" <? if($lan=="hy") echo "class='activeAFooter'";?>>Հայ</a>
@@ -326,15 +325,15 @@ $(document).ready(function() {
     </span>
     <? if ($r_title_r){
     	 echo'<br><h2 class="titleNews">'.$r_title_r.'</h2>';
-		 echo'<img src="/userfiles/'.$r_pic_r.'" class="newsMainImage" alt="" />';
+		 echo'<img src="/userfiles/'.$r_pic_r.'" class="newsMainImage" />';
 		 echo'<div class="newsContent">'.$r_text_r.'
     			<p style="text-align:center;">'.$r_video_r.'</p>
     		 </div>';
 	}
 	else  exit;
  }
- if($page=="stream") { ?>
-    <span  style="float:right; padding-right:7px;  padding-top: 2px;">
+ elseif($page=="stream") { ?>
+    <span  style="float:right; padding-right:7px;">
         <span class='lang' style='float:left;  padding:0 8px 0 8px; background:none' >
 		    <a rel='external' href="?page=<?=$page?>&amp;lan=hy" <? if($lan=="hy") echo" class='activeAFooter'"; ?>>Հայ</a>
         </span>
