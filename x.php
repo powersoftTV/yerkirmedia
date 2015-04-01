@@ -1916,10 +1916,10 @@ if ( $act == 'pages' && $id == 44 )
 
 
 	}
-#top .video_screenshots .carousel-wrap {
-    width: 835px;
+.k_div .video_screenshots .carousel-wrap {
+    width: 835px !important;
     margin: 0 auto;
-    }
+  }
 
 </style>
 <title><?=
@@ -5112,26 +5112,38 @@ if ( ! $act && ! $id )
 
 
 		<!--TOP START-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--FREE SPACE-->
-
-
-
-		
-<!--END OF FREE SPACE-->
+<!-- VIDEO BLOG -->
+		<div class="header noborder" style="background:#e4e4e4;border:1px solid #bfbfbf;height:18px;margin-top:20px;">
+        <h2 <? if ( $lan == "en" )echo "Video" ;
+               elseif( $lan == "ru" )echo "Видео" ;
+               else echo 'onclick="document.location="http://www.youtube.com/user/yerkirmediatv?feature=results_main"" style="cursor:pointer;">Տեսանյութեր';?>
+           <img src="s/i/video_f.png" style="margin-left:10px;" alt=''/></h2></div>
+           <div id="top" style="margin-top:0px;">
+           <div class='video_screenshots' style="margin-top:20px;">
+           
+				<ul>
+    			<?
+      $resh = mysql_query( "SELECT `id`, `r_pic`, `r_title_" . $lan .
+        "` FROM `records` WHERE `r_category` > 0 AND `r_video_" . $lan .
+        "`!='' AND `r_show_$lan` = 1 AND `id` NOT IN (" . $r_id_r_1 . "," . $r_id_r_2 .
+        "," . $r_id_r_3 . ") Order by `r_ord` desc LIMIT 18 " ) ;
+      $count = @mysql_num_rows( $resh ) ;
+        for ( $i = 0; $i < $count; $i++ )
+            {
+                $v_id = mysql_result( $resh, $i, "id" ) ;
+                $v_pic = mysql_result( $resh, $i, "r_pic" ) ;
+                $v_title = mysql_result( $resh, $i, "r_title_". $lan ) ;
+                echo '<li style="height:152px;">
+    					<div><img src="userfiles/'.$v_pic.'" style="width:190px;height:152px;" alt="" /></div>
+						<div class="asVideoDiv"><a href="?act=news&amp;lan='.$lan.'&amp;id='.$v_id.'#video">'.$v_title.'</a></div>
+					  </li>' ;
+               }
+                ?>
+				</ul>
+         
+			</div>
+		</div>
+        <!--END OF VIDEO BLOG-->
 		<?
 
 } elseif ( $act == "archive_programs" )
@@ -11599,7 +11611,7 @@ for ( $i = 0; $i < $count_banners; $i++ )
                elseif( $lan == "ru" )echo "Видео" ;
                else echo 'onclick="document.location="http://www.youtube.com/user/yerkirmediatv?feature=results_main"" style="cursor:pointer;">Տեսանյութեր';?>
            <img src="s/i/video_f.png" style="margin-left:10px;" alt=''/></h2></div>
-           <div id="top" style="margin-top:0px;">
+           <div class="k_div" id="top" style="margin-top:0px;">
            <div class='video_screenshots' style="margin:20px auto;width:895px;float:none">
            
 				<ul>
