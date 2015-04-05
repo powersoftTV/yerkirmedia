@@ -2266,14 +2266,19 @@ document.oncopy = addLink;
 .bottom_ban{
     overflow: hidden;
     height: 100px;
+	padding-top: 50px;
+	margin-bottom:20px;
+	width:100%;
 }
 .bottom_ban img{
     height:100px;
-	width:129px;
+	/*width:129px;*/
+	padding:0 4px;	
 }
 .bottom_ban li{
     list-style-type: none;
 	float:left;
+	
 }
 </style>
     <div class="bottom_ban">
@@ -2295,12 +2300,14 @@ function ban_remove(){
 }
 function auto_loop(){
            my_temp=$('.bottom_ban ul li:first-child').html();
-           $('.bottom_ban ul li:first-child').animate({"margin-left":"-129px"}, "1000");
+		   var first_img=$('.bottom_ban ul li:first-child').outerWidth( true );
+           $('.bottom_ban ul li:first-child').animate({"margin-left":"-"+first_img+"px"}, "1000");
 		   setTimeout('ban_remove()', 1001);
            $('.bottom_ban ul li:last-child').after('<li>'+my_temp+'</li>');
            setTimeout('auto_loop()', 2000);
         };
 $(document).ready(function() {
+	var is_play=true;
     $('.bottom_ban ul li:last-child img').load(function() {
 		setTimeout(function(){
 			var img_width=0;
@@ -2310,7 +2317,7 @@ $(document).ready(function() {
 			var all_width=0;
 			var div_width=$('.bottom_ban').width();
 			$('.bottom_ban ul li').each(function () {
-				cur_img=$(this).width();
+				cur_img=$(this).outerWidth(true);
 				if((img_width+cur_img)<=div_width){
 					img_width=img_width+cur_img;
 					all_width=img_width;
@@ -2319,12 +2326,17 @@ $(document).ready(function() {
 			});
 			cur_margin=(div_width-img_width)/2;
 			$('.bottom_ban ul').css('width',all_width+'px');
-			//$('.bottom_ban').css('max-width',img_width+'px');
 			$('.bottom_ban').css('width',img_width+'px');
 			$('.bottom_ban').css('margin-left',cur_margin+'px');
-			setTimeout('auto_loop()', 2000);
+			if(is_play)setTimeout('auto_loop()', 2000);
+			
+			$(".bottom_ban img").mouseover(function () {
+				is_play=false;
+			});
+
 		}, 2000);
     });
+	
 });
 </script>
 <!--BODY END-->
