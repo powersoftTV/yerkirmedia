@@ -2245,8 +2245,7 @@ document.oncopy = addLink;
 	</div>
 	<!--RIGHT BLOCK END-->
 
-</div>
-<!--BODY END-->
+
 
 <div id="bottom_ban">
 			<?
@@ -2259,12 +2258,77 @@ document.oncopy = addLink;
 					if($b_pic_1) echo"<a href='$b_link_1' target='_blank' rel='nofollow'><img src='userfiles/$b_pic_1' alt='' style='border:0px;'/></a>";			
 			}
 
-            @mysql_close($link);
+           
 			?>
 	
 </div>
-
-
+<style>
+.bottom_ban{
+    overflow: hidden;
+    height: 100px;
+}
+.bottom_ban img{
+    height:100px;
+	width:129px;
+}
+.bottom_ban li{
+    list-style-type: none;
+	float:left;
+}
+</style>
+    <div class="bottom_ban">
+    <?
+    echo "<ul>";
+    $resh_bottom = mysql_query( "SELECT * FROM `records` WHERE `r_category` > 0 AND `r_top` = 1 AND `r_show_hy` = 1 Order by `r_ord` desc LIMIT 15" ) ;
+    $count_bottom = @mysql_num_rows($resh_bottom);
+    for($i=0;$i<$count_bottom;$i++){
+	   $pic_bottom = mysql_result( $resh_bottom, $i, "r_pic" );
+       echo "<li><img alt='' src='userfiles/".$pic_bottom."'></li>";			
+	}
+    echo "</ul>";
+    ?>
+    </div>
+</div>
+<script type="text/javascript">
+function ban_remove(){
+	$('.bottom_ban ul li:first-child').remove();
+}
+function auto_loop(){
+           my_temp=$('.bottom_ban ul li:first-child').html();
+           $('.bottom_ban ul li:first-child').animate({"margin-left":"-129px"}, "1000");
+		   setTimeout('ban_remove()', 1001);
+           $('.bottom_ban ul li:last-child').after('<li>'+my_temp+'</li>');
+           setTimeout('auto_loop()', 2000);
+        };
+$(document).ready(function() {
+    $('.bottom_ban ul li:last-child img').load(function() {
+		setTimeout(function(){
+			var img_width=0;
+			var cur_img=0;
+			var cur_margin=0;
+			var my_temp="";
+			var all_width=0;
+			var div_width=$('.bottom_ban').width();
+			$('.bottom_ban ul li').each(function () {
+				cur_img=$(this).width();
+				if((img_width+cur_img)<=div_width){
+					img_width=img_width+cur_img;
+					all_width=img_width;
+				}
+				else all_width=all_width+cur_img;
+			});
+			cur_margin=(div_width-img_width)/2;
+			$('.bottom_ban ul').css('width',all_width+'px');
+			//$('.bottom_ban').css('max-width',img_width+'px');
+			$('.bottom_ban').css('width',img_width+'px');
+			$('.bottom_ban').css('margin-left',cur_margin+'px');
+			setTimeout('auto_loop()', 2000);
+		}, 2000);
+    });
+});
+</script>
+<!--BODY END-->
+<?  @mysql_close($link); ?>
 <!--FOOTER START-->
 <?if($lan=="en") {?>
 <div id="footer">
