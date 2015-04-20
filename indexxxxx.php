@@ -10215,9 +10215,7 @@ elseif ( $act == "ether" )
 
 elseif ( $act == "cat" && $id )
 {
-	
     $resh = mysql_query( "SELECT * FROM `categories` ORDER BY orderCode " ) ;
-	
   	$count = @mysql_num_rows( $resh ) ;
     echo "<div id=\"top\">" ;
     for ( $i = 0; $i < $count; $i++ )
@@ -10230,10 +10228,9 @@ elseif ( $act == "cat" && $id )
         echo ">" . $c_name . "</a></div>" ;
     }
     echo "</div>" ;
-    $resh = mysql_query( "SELECT * FROM `records`  WHERE `r_category` = '" . $id .
+    $resh = mysql_query( "SELECT * FROM `records` WHERE `r_category` = '" . $id .
        "' AND `r_show_$lan` = 1 Order by `r_ord` desc " ) ;
-    $count = @mysql_num_rows( $resh) ;
-	
+    $count = @mysql_num_rows( $resh ) ;
     echo "<div id='supertop'>" ;
     for ( $i = ( $p - 1 ) * 10; $i < $count && $i < ( 10 * $p ); $i++ )
     {
@@ -10244,7 +10241,6 @@ elseif ( $act == "cat" && $id )
         $r_text_r = mysql_result( $resh, $i, "r_text_$lan" ) ;
         $r_video_r = mysql_result( $resh, $i, "r_video_$lan" ) ;
         $r_keywords_r = mysql_result( $resh, $i, "r_keywords_$lan" ) ;
-		$r_count=mysql_result( $resh, $i, "r_count" ) ;
 ?>
 	<div class="image_c">
 <? 
@@ -10318,67 +10314,310 @@ elseif ( $act == "cat" && $id )
 
 elseif ( $act == "news" && $id )
 {
-	
-		$resh_count=mysql_query("UPDATE `records` SET  `r_count` = r_count + 1 WHERE `id` = '".$id."' ");
-		//$r_count=mysql_result( $resh, 0, "r_count" ) ;
-	//$resh_count=mysql_query("UPDATE `records` SET  `count` = count + 1 WHERE `id` = '".$id."' ");
-	$query_all = "SELECT r_count FROM records WHERE `id` = '".$id."' ";
-	$result_all = mysql_query($query_all) or die('MySql Error' . mysql_error());
-	$row = mysql_fetch_array($result_all);
-	
-	//echo $row['count'];
-	  ?>
-       
+
+?>
+
+
+
+
+
+
+
 		 <div id="supertop">
 
-			<div class="content_all">
-            
 
-			<? if ( $r_pic_r )
+
+
+
+
+
 			
-    			{?>
-                <img src="userfiles/<?=$r_pic_r?>" alt="" style='float:left;max-width:400px;margin-right: 20px; margin-bottom: 20px;' />
-				<? }?>
-				<h2><a href="?act=news&amp;lan=<?=$lan?>&amp;id=<?=$r_id_r?>"><?=$r_title_r?></a> 
+
+
+
+
+
+
+
+			<div class="content_all">
+
+
+
+
+
+
+
 			<?
 
+    if ( $r_pic_r )
+    {
+
+?><img src="userfiles/<?=
+
+        $r_pic_r
+
+?>" alt="" style='float:left;max-width:400px;margin-right: 20px; margin-bottom: 20px;' /><?
+
+    }
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				<h2><a href="?act=news&amp;lan=<?=
+
+    $lan
+
+?>&amp;id=<?=
+
+    $r_id_r
+
+?>"><?=
+
+    $r_title_r
+
+?></a> 
+
+
+
+
+
+
+
+				<?
+
     if ( $r_video_r )
-    {?>
-    	<a href="?act=news&amp;lan=<?=$lan?>&amp;id=<?=$r_id_r?>#video" class="video"><?=$_LANG[4][$lan]?></a>
-	<? }?>
+    {
 
-	</h2>
-	<p><span class='p_time'><?=$r_date_r?></span><br /><?=$r_text_r?><br /><br /><a name="video"> </a></p>
-	<p style='text-align:center;'><?= $r_video_r?></p>
-    <!--<p style='text-align:right;'> Դիտվել է <?=$row['r_count']?> անգամ</p>-->
-		
-        
+?><a href="?act=news&amp;lan=<?=
+
+        $lan
+
+?>&amp;id=<?=
+
+        $r_id_r
+
+?>#video" class="video"><?=
+
+        $_LANG[4][$lan]
+
+?></a><?
+
+    }
+
+?>
+
+
+
+
+
+
+
+				</h2>
+
+
+
+
+
+
+
+				<p><span class='p_time'><?=
+
+    $r_date_r
+
+?></span><br /><?=
+
+    $r_text_r
+
+?><br /><br /><a name="video"> </a></p>
+
+
+
+
+
+
+
+				<p style='text-align:center;'><?=
+
+    $r_video_r
+
+?></p>
+
+
+
+
+
+
+
 				
+
+
+
+
+
+
+
 				<!-- AddThis Button BEGIN -->
+
+
+
+
+
+
+
 				<div class="addthis_toolbox addthis_default_style" style='margin-top:13px;'>
+
+
+
+
+
+
+
 				   <a class="addthis_button_facebook"></a> 
+
+
+
+
+
+
+
 				   <a class="addthis_button_twitter"></a> 
+
+
+
+
+
+
+
 				   <a class="addthis_button_vk"></a> 
+
+
+
+
+
+
+
 				   <a class="addthis_button_yahoobkm"></a> 
+
+
+
+
+
+
+
 				   <a class="addthis_button_favorites"></a> 
+
+
+
+
+
+
+
 				   <a class="addthis_button_mymailru"></a> 
+
+
+
+
+
+
+
 				   <a class="addthis_button_compact"></a> 
+
+
+
+
+
+
+
 				   <a class="addthis_counter addthis_bubble_style"></a>
+
+
+
+
+
+
+
 				</div>
-				
 
 
-	<script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
-	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=narekmarkosyan"></script>
-	<!-- AddThis Button END -->
 
-	<?
+
+
+
+
+				<script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+
+
+
+
+
+
+
+				<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=narekmarkosyan"></script>
+
+
+
+
+
+
+
+				<!-- AddThis Button END -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				<?
 
     if ( $lan == "hy" )
     {
 
 ?>
-			<!-- comments start -->
+
+
+
+
+
+
+
+				<!-- comments start -->
+
+
+
+
+
+
+
 				<?
 
         $resh_com = mysql_query( "SELECT * FROM ` records_comments` WHERE `record_id` = '" .
@@ -11494,7 +11733,7 @@ for ( $i = 0; $i < $count; $i++ )
 }
 .bottom_ban img{
     height:100px;
-	width:155px;
+	/*width:129px;*/
 	padding:0 4px;	
 }
 .bottom_ban li{
@@ -11722,10 +11961,8 @@ if ( $lan == "en" )
 
     <img src="ym.jpg" alt="" style="display:none;" />
 
-	<div class="developer"><a href='http://www.biznet.am/' target="_blank" title='Վեբ կայքերի պատրաստում'>Կայքի պատրաստում և սպասարկում` BizNet</a>
-     <a href="http://www.warlog.ru/" target="_blank">
-    <img border="0" src="http://www.warlog.ru/counter/?i=3003" alt="счетчик посещений" title="счетчик посещений" /></a>
-</div>
+	<div class="developer"><a href='http://www.biznet.am/' target="_blank" title='Վեբ կայքերի պատրաստում'>Կայքի պատրաստում և սպասարկում` BizNet</a></div>
+
 
 
 </div>
